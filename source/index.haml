@@ -122,6 +122,49 @@
   = image_tag "jail.gif"
 
 %section(data-background="#337C97")
+  %h3 Compile and deploy applications(Java Spring example)
+  %ul.full-width
+    %li.fragment
+      Compile java project
+      %pre
+        %code.bash
+          :preserve
+            docker run --rm \
+                       -v "$PWD":/usr/src/app \
+                       -w /usr/src/app \
+                       java:7 \
+                       bash -c "./gradlew build; chown -R 1000:1000 build .gradle"
+
+    %li.fragment
+      Add a docker file based in java:7 image
+      %pre
+        %code.bash
+          :preserve
+            echo "FROM java:7" >> Dockerfile
+            echo "ADD build/libs/*.jar app.jar" >> Dockerfile
+
+%section(data-background="#54618B")
+  %h3 Compile and deploy Java Spring app
+  %ul.fragments
+    %li.fragment
+      Create a image with your app
+      %pre
+        %code.bash
+          :preserve
+            docker build -t image-name:image-tag .
+
+    %li.fragment
+      Run your image in background and redirect port 8080 to port 80 in host machine
+      %pre
+        %code.bash
+          :preserve
+            docker run -d \
+                       --restart=always \
+                       -p 8080:80 \
+                       --name docker-name \
+                       image-name:image-tag
+
+%section(data-background="#337C97")
   %h3 Create a ruby image to develop a docker presentation!!!
   %script(type="text/javascript"
           src="https://asciinema.org/a/ditfxzyg8fx6qtmf1yp0ok4ff.js"
