@@ -138,10 +138,10 @@
     %li.fragment
       Add a docker file based in java:7 image
       %pre
-        %code.bash
+        %code
           :preserve
-            echo "FROM java:7" >> Dockerfile
-            echo "ADD build/libs/*.jar app.jar" >> Dockerfile
+            FROM java:7
+            ADD build/libs/*.jar app.jar
 
 %section(data-background="#54618B")
   %h3 Compile and deploy applications(Java Spring example)
