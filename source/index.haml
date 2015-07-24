@@ -1,0 +1,131 @@
+%section(data-background="#337C97")
+  %h1 Las Palmas DevOps
+  = image_tag "docker-logo.png", class: "presentation-logo"
+
+%section(data-background="#54618B")
+  %h2 Virtualization
+  %blockquote(cite="https://docs.docker.com/introduction/understanding-docker/")
+    “The act of creating a virtual (rather than actual) version of something,
+    including (but not limited to) a virtual computer hardware platform,
+    operating system (OS), storage device, or computer network resources.”
+
+%section(data-background="#337C97")
+  %h3 Virtual machines diagram
+  = image_tag "vm-diagram.png"
+
+%section(data-background="#54618B")
+  %h3 From the bottom to the top
+  %ul
+    %li.fragment Infrastructure <i>->(Hardware)</i>
+    %li.fragment Operating system <i>->(*Optional)</i>
+    %li.fragment Hypervisor <i>->(Virtual machine monitor)</i>
+    %li.fragment
+      Machine 1
+      %ul
+        %li Gest OS 1 <i>->(virtual machine OS)</i>
+        %li Bin/Libs 1 <i>(Application dependencies)</i>
+        %li App 1 <i>(Your application)</i>
+    %li.fragment
+      Machine 2
+      %ul
+        %li Gest OS 2 <i>->(virtual machine OS)</i>
+        %li Bin/Libs 2 <i>(Application dependencies)</i>
+        %li App 2 <i>(Your application)</i>
+    %li.fragment
+      \...
+
+%section(data-background="#337C97")
+  %h2 What is Docker?
+  %blockquote(cite="https://docs.docker.com/introduction/understanding-docker/")
+    “Docker is an open platform for developing, shipping, and running applications.”
+
+%section(data-background="#54618B")
+  %h3 Docker platform
+  %ul
+    %li
+      Docker engine <i>(CLI and System daemon)</i>
+    %li
+      Docker hub <i>(Cloud for docker images)</i>
+
+%section(data-background="#337C97")
+  %h3 The underlying technology
+  %ul
+    %li.fragment
+      Namespaces <p><i>(provide the isolated workspace)</i></p>
+    %li.fragment
+      Cgroups <p><i>(resource control)</i></p>
+    %li.fragment
+      Union File System <p><i>(provide the building blocks for containers)</i></p>
+    %li.fragment
+      Container format
+      <p><i>(wrapper for different container formats like: Open container, LXC ...)</i></p>
+
+%section(data-background="#54618B")
+  %h3 Docker platform diagram
+  = image_tag "docker-diagram.png"
+
+%section(data-background="#337C97")
+  %h3 Using union file system
+  = image_tag "docker-ufs-diagram.png"
+
+%section(data-background="#54618B")
+  %h3 From the bottom to the top
+  %ul
+    %li.fragment Infrastructure <i>->(Hardware)</i>
+    %li.fragment Operating system <i>->(Not optional)</i>
+    %li.fragment Docker Engine <i>->(docker daemon + docker CLI)</i>
+    %li.fragment Common Bins/Libs <i>->(Common File System layers)</i>
+    %li.fragment
+      Container 1
+      %ul
+        %li Bin/Libs 1 <i>(Application dependencies)</i>
+        %li App 1 <i>(Your application)</i>
+    %li.fragment
+      Container 2
+      %ul
+        %li Bin/Libs 2 <i>(Application dependencies)</i>
+        %li App 2 <i>(Your application)</i>
+    %li.fragment
+      \...
+
+%section(data-background="#337C97")
+  %h2 Real use cases
+
+%section(data-background="#54618B")
+  %h3 We need a little history, to put us in context.
+  %ul
+    %li.fragment
+      In 1979 during development of Version 7 Unix.
+    %li.fragment
+      The developer team found a problem.
+    %li.fragment
+      If you add some bug to your system libraries.
+    %li.fragment
+      <b>Your system are broken and it will never start again!!!</b>
+    %li.fragment
+      Yep, so if you are a Operating System developer, you need a solution.
+
+%section(data-background="#337C97")
+  %h3 chroot
+  %ul
+    %li.fragment
+      Operation that changes the apparent root directory for the current
+      running process and its children.
+    %li.fragment
+      Cannot name (and therefore normally not access) files outside
+      the designated directory tree.
+    %li.fragment
+      The modified environment is called a "chroot jail".
+
+%section(data-background="#54618B")
+  %h3 chroot jail
+  = image_tag "jail.gif"
+
+%section(data-background="#337C97")
+  %h3 Create a ruby image to develop a docker presentation!!!
+  %script(type="text/javascript"
+          src="https://asciinema.org/a/ditfxzyg8fx6qtmf1yp0ok4ff.js"
+          id="asciicast-ditfxzyg8fx6qtmf1yp0ok4ff"
+          async
+          data-autoplay="false"
+          data-speed="10")

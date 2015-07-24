@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %link(rel="icon"
+      type="image/png"
+      href="/images/favicon-32x32.png"
+      sizes="32x32")
+    %link(rel="icon"
+      type="image/png"
+      href="/images/favicon-96x96.png"
+      sizes="96x96")
+    %link(rel="icon"
+      type="image/png"
+      href="/images/favicon-16x16.png"
+      sizes="16x16")
+    %title= data.page.title || "Presentation"
+    = stylesheet_link_tag "all"
+  %body{:class => page_classes}
+    .reveal
+      .state-background
+        .slides
+          = yield
+
+    %footer.main-footer
+      = image_tag "logo.png", class: "footer-logo"
+
+    = javascript_include_tag  "all"
